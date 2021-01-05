@@ -1,4 +1,4 @@
-package evaluation_1.graph;
+package graph;
 
 import javax.swing.*;
 import java.awt.*;
