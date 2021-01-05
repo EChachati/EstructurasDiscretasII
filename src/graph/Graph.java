@@ -15,7 +15,7 @@ public class Graph {
 
     public Vector<Node> getNodeList() { return nodes; }
 
-    public Vector<Link> getEdgeList() { return links; }
+    public Vector<Link> getLinkList() { return links; }
 
     public String toString() {
         StringBuilder str = new StringBuilder();

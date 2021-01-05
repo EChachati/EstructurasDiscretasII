@@ -23,7 +23,7 @@ public class Canvas extends JPanel implements MouseListener {
     // Override JComponent.paint()
     public void paint(Graphics g){
         for(Node node: graph.getNodeList()){ node.paint(g); }
-        for(Link link : graph.getEdgeList()){ link.paint(g); }
+        for(Link link : graph.getLinkList()){ link.paint(g); }
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Canvas extends JPanel implements MouseListener {
                         node1 = node;
                     } else if (!node1.getOval().contains(mouseEvent.getPoint())){
                         node2 = node;
-                        graph.getEdgeList().add(new Link(node1, node2));
+                        graph.getLinkList().add(new Link(node1, node2));
                         repaint();
                         node1 = null;
                         node2 = null;
@@ -159,6 +159,6 @@ public class Canvas extends JPanel implements MouseListener {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
-        System.out.println(canvas.shortestPathDijkstra(5,1));
+        System.out.println(canvas.shortestPathDijkstra(0,4));
     }
 }

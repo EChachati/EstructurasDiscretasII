@@ -4,9 +4,12 @@ import java.awt.*;
 
 public class Link {
     private final int x1, x2, y1, y2;
+    public final Node node1, node2;
     private final int distance;
 
     public Link(Node node1, Node node2){
+        this.node1 = node1;
+        this.node2 = node2;
         this.x1 = node1.getX();
         this.y1 = node1.getY();
         this.y2 = node2.getY();
@@ -19,6 +22,8 @@ public class Link {
     }
 
     public Link(Node node1, Node node2, int distance){
+        this.node1 = node1;
+        this.node2 = node2;
         this.distance = distance;
         this.x1 = node1.getX();
         this.y1 = node1.getY();

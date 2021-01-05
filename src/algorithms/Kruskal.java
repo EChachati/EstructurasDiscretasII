@@ -2,9 +2,11 @@ package algorithms;
 
 import graph.Graph;
 import graph.Link;
+import graph.Node;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Map;
 import java.util.Vector;
 
 public class Kruskal {
@@ -20,7 +22,21 @@ public class Kruskal {
 
     }
 
-    public Collection<Link> sortLinksByDistance(Vector<Link> links) {
+    private boolean makesCycle(Vector<Link> usedLinks, Graph graph) {
+        Vector<Node> visitedNodes = new Vector<>();
+        Vector<Node> unvisitedNodes = graph.getNodeList();
+        //Node actual = graph.getNodeList().get(0);
+        for (Node actual: graph.getNodeList()){
+            visitedNodes.add(actual);
+            for (Map.Entry<Integer, Object[]> access: actual.undirectedMap.entrySet()){
+                Link linkTo = (Link)access.getValue()[1];
+                if (){}
+            }
+        }
+        return true;
+    }
+
+    private Collection<Link> sortLinksByDistance(Vector<Link> links) {
         links.sort(new LinkComparator());
         return links;
     }
@@ -31,3 +47,5 @@ public class Kruskal {
         }
     }
 }
+
+// https://www.youtube.com/watch?v=ivcbaIhrcsE
