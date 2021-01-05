@@ -1,8 +1,10 @@
 package algorithms;
 
-import graph.graph.Link;
-import graph.graph.Graph;
-import graph.graph.Node;
+
+
+import graph.Graph;
+import graph.Link;
+import graph.Node;
 
 import java.util.HashMap;
 import java.util.Map;

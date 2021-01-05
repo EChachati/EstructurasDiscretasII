@@ -16,6 +16,8 @@ public class Kruskal {
         // Links Sin Usar, Ordenados
 
         //Se realiza mientras !NodosDesconectados.isEmpty
+            // Se Revisa el Link con costo mas bajo que no forme un ciclo
+
     }
 
     public Collection<Link> sortLinksByDistance(Vector<Link> links) {
