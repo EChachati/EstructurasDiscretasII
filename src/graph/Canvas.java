@@ -142,14 +142,18 @@ public class Canvas extends JPanel implements MouseListener {
                 "\n 1 -> Predefined Graph 1" +
                 "\n 2 -> Predefined Graph 2" +
                 "\n 3 -> Predefined Graph 3"));
-        if (n == 3) {
-            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber3());
-        } else if (n == 2){
-            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber2());
-        } else if (n == 1) {
-            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber1());
-        } else {
-            canvas = new Canvas();
+
+        switch(n){
+            case 1:
+                canvas = new Canvas(PREDEFINED_GRAPH.graphNumber1());
+                break;
+            case 2:
+                canvas = new Canvas(PREDEFINED_GRAPH.graphNumber2());
+                break;
+            case 3:
+                canvas = new Canvas(PREDEFINED_GRAPH.graphNumber3());
+            default:
+                canvas = new Canvas();
         }
 
         JFrame window = new JFrame("Graphs");
