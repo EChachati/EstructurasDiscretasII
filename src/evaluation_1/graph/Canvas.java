@@ -23,7 +23,7 @@ public class Canvas extends JPanel implements MouseListener {
     // Override JComponent.paint()
     public void paint(Graphics g){
         for(Node node: graph.getNodeList()){ node.paint(g); }
-        for(Link link: graph.getLinkList()){ link.paint(g); }
+        for(Link link : graph.getEdgeList()){ link.paint(g); }
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Canvas extends JPanel implements MouseListener {
                         node1 = node;
                     } else if (!node1.getOval().contains(mouseEvent.getPoint())){
                         node2 = node;
-                        graph.getLinkList().add(new Link(node1, node2));
+                        graph.getEdgeList().add(new Link(node1, node2));
                         repaint();
                         node1 = null;
                         node2 = null;
@@ -143,11 +143,11 @@ public class Canvas extends JPanel implements MouseListener {
                 "\n 2 -> Predefined Graph 2" +
                 "\n 3 -> Predefined Graph 3"));
         if (n == 3) {
-            canvas = new Canvas(PREDEFINED_GRAPH.THREE);
+            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber3());
         } else if (n == 2){
-            canvas = new Canvas(PREDEFINED_GRAPH.TWO);
+            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber2());
         } else if (n == 1) {
-            canvas = new Canvas(PREDEFINED_GRAPH.ONE);
+            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber1());
         } else {
             canvas = new Canvas();
         }
