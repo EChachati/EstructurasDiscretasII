@@ -1,7 +1,7 @@
 package algorithms;
 
-import evaluation_1.graph.Graph;
-import evaluation_1.graph.Node;
+import graph.graph.Graph;
+import graph.graph.Node;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Vector;

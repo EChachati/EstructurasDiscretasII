@@ -1,8 +1,8 @@
 package algorithms;
 
-import evaluation_1.graph.Link;
-import evaluation_1.graph.Graph;
-import evaluation_1.graph.Node;
+import graph.graph.Link;
+import graph.graph.Graph;
+import graph.graph.Node;
 
 import java.util.HashMap;
 import java.util.Map;
