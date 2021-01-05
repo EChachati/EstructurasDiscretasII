@@ -1,10 +1,7 @@
 package evaluation_1.graph;
 
 import java.awt.*;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 public class Node {
     private final int x;
@@ -61,6 +58,14 @@ public class Node {
             accessNodes.add((Node) entry.getValue()[0]);
         }
         return accessNodes;
+    }
+
+    public Collection<Link> getAllAccessLinks(){
+        Vector<Link> access = new Vector<Link>();
+        for(Map.Entry<Integer, Object[]> entry: undirectedMap.entrySet()){
+            access.add((Link) entry.getValue()[1]);
+        }
+        return access;
     }
 
     public String toString(){
