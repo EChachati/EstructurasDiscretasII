@@ -1,7 +1,5 @@
 package algorithms;
 
-
-
 import graph.Graph;
 import graph.Link;
 import graph.Node;

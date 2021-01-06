@@ -52,6 +52,8 @@ public class Node {
 
     public Map getUndirectedMap() { return this.undirectedMap; }
 
+    public Map getAccessByMap(){ return this.accessedByMap; }
+
     public Collection<Node> getAllAccessNodes() {
         Vector<Node> accessNodes = new Vector<>();
         for(Map.Entry<Integer, Object[]> entry: undirectedMap.entrySet()){

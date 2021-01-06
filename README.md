@@ -5,8 +5,7 @@ Evaluación 1
 
   Pendiente:
   
-    -> Sin tomar en cuenta la orientación de las conexiones:
-        - Árbol de expansión mínima mediante el Algoritmo de Kruskal.
-      
-    -> Tomando en cuenta la orientación de las conexiones:
-        - Matrices de cierre transitivo mediante el Algoritmo de Warshall.
+    -> Preparar parte Grafica de los algorimos:
+        - Warshall
+        - Kruskal
+    -> Realizar ejercicios en Word
