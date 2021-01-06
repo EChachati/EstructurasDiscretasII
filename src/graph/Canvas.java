@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import algorithms.Dijkstra;
+import algorithms.Kruskal;
 import algorithms.Warshall;
 
 public class Canvas extends JPanel implements MouseListener {
@@ -88,6 +89,22 @@ public class Canvas extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent mouseEvent) {
     }
 
+    public void reset(){
+        for(Node node : graph.getNodeList()){
+            node.setColor(Color.GRAY);
+        }
+        for(Link link: graph.getLinkList()){
+            link.setColor(Color.BLACK);
+        }
+        try {
+            Thread.sleep(1000);
+            repaint();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+    }
     public static void main(String[] args) {
         Canvas canvas;
         int n = Integer.parseInt(JOptionPane.showInputDialog("Choose one:" +
@@ -114,7 +131,9 @@ public class Canvas extends JPanel implements MouseListener {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
         
-        System.out.println(Dijkstra.shortestPathDijkstra(canvas, 1, 4));
+        //System.out.println(Dijkstra.shortestPathDijkstra(canvas, 1, 4));
+        //canvas.reset();
+        //System.out.println(Kruskal.minimumSpanningTree(canvas));
         Warshall.warshallAlgorithm(canvas.graph);
     }
 }

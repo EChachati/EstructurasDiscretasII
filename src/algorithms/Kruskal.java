@@ -1,12 +1,44 @@
 package algorithms;
 
+import java.awt.Color;
+import graph.Canvas;
 import graph.Graph;
 import graph.Link;
 import graph.Node;
 
 import java.util.*;
 
+import static algorithms.Dijkstra.waitFor;
+
 public class Kruskal {
+
+    public static int minimumSpanningTree(Canvas canvas){
+        Graph graph = canvas.getGraph();
+        waitFor(canvas);
+        Vector<Link> usedLinks = new Vector<>();
+        Vector<Link> unusedLinks = new Vector<>(sortLinksByDistance(graph.getLinkList()));
+        int cost = 0;
+        int x = 0;
+        while(!unusedLinks.isEmpty() && x < 30){
+            x++;
+            usedLinks.add(unusedLinks.firstElement());
+            unusedLinks.remove(0);
+            usedLinks.lastElement().setColor(Color.YELLOW);
+            waitFor(canvas);
+            if (isCycle(usedLinks)){
+                usedLinks.lastElement().setColor(Color.RED);
+                usedLinks.remove(usedLinks.lastElement());
+            } else {
+                usedLinks.lastElement().setColor(Color.GREEN);
+            }
+            waitFor(canvas);
+        }
+        for(Link link: usedLinks){
+            cost += link.getDistance();
+        }
+        return cost;
+
+    }
 
     public static int minimumSpanningTree(Graph graph){
         Vector<Link> usedLinks = new Vector<>();
@@ -18,6 +50,7 @@ public class Kruskal {
             usedLinks.add(unusedLinks.firstElement());
             unusedLinks.remove(0);
             if (isCycle(usedLinks)){
+                usedLinks.lastElement().setColor(Color.RED);
                 usedLinks.remove(usedLinks.lastElement());
             }
         }

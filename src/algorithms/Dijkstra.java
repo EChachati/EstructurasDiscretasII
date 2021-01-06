@@ -62,7 +62,7 @@ public class Dijkstra {
         return str.toString();
     }
 
-    private static void waitFor(Canvas canvas) {
+    protected static void waitFor(Canvas canvas) {
         try {
             Thread.sleep(800);
             canvas.repaint();

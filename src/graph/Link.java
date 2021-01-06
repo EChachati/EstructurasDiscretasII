@@ -7,6 +7,7 @@ public class Link {
     private final int x1, x2, y1, y2;
     public final Vector<Node> node;
     private final int distance;
+    private Color color = Color.BLACK;
 
     public Link(Node node1, Node node2){
         this.node = new Vector<>();
@@ -50,6 +51,10 @@ public class Link {
     }
 
     public int getDistance() { return distance; }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 
     public String toString(){
         return "FirstNode=" + node.get(0).getIdentifier() + " SecondNode=" + node.get(1).getIdentifier() +" Cost="+  distance;
