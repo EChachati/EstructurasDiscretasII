@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import algorithms.Warshall;
 
 public class Canvas extends JPanel implements MouseListener {
 
@@ -163,6 +164,8 @@ public class Canvas extends JPanel implements MouseListener {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
-        System.out.println(canvas.shortestPathDijkstra(5,1));
+        System.out.println(canvas.shortestPathDijkstra(1,2));
+        Warshall.warshallAlgorithm(canvas.graph);
+
     }
 }
