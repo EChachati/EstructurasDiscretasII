@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+import algorithms.Dijkstra;
 import algorithms.Warshall;
 
 public class Canvas extends JPanel implements MouseListener {
@@ -29,6 +30,8 @@ public class Canvas extends JPanel implements MouseListener {
         for(Node node: graph.getNodeList()){ node.paint(g); }
         for(Link link : graph.getLinkList()){ link.paint(g); }
     }
+
+    public Graph getGraph() { return graph; }
 
     @Override
     /*
@@ -84,7 +87,7 @@ public class Canvas extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
     }
-
+/*
     public String shortestPathDijkstra(int start, int objective) {
         Node actual = graph.getNodeList().get(start);
         graph.getNodeList().get(objective).setColor(Color.green);
@@ -142,6 +145,7 @@ public class Canvas extends JPanel implements MouseListener {
             e.printStackTrace();
         }
     }
+*/
 
     public static void main(String[] args) {
         Canvas canvas;
@@ -169,7 +173,7 @@ public class Canvas extends JPanel implements MouseListener {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
         
-        System.out.println(canvas.shortestPathDijkstra(1, 4));
+        System.out.println(Dijkstra.shortestPathDijkstra(canvas, 1, 4));
         Warshall.warshallAlgorithm(canvas.graph);
     }
 }
