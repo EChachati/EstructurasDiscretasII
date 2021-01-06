@@ -8,7 +8,8 @@ import java.util.Queue;
 import java.util.Vector;
 
 public class BFS {
-    public static void BFS(Graph graph, int node) {
+
+    public static void breadthFirstSearch(Graph graph, int node) {
         StringBuilder BFS = new StringBuilder("[ ");
         Node actual = graph.getNodeList().get(node);
         Queue<Node> queue = new LinkedList();

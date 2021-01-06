@@ -8,30 +8,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
-import algorithms.Warshall;
-
 public class Canvas extends JPanel implements MouseListener {
 
     private final Graph graph;
     Node node1, node2 = null;
 
-    public Canvas(Graph graph) {
-        this.graph = graph;
-    }
+    public Canvas(Graph graph){ this.graph = graph; }
 
-    public Canvas() {
+    public Canvas(){
         this.graph = new Graph();
         this.addMouseListener(this);
     }
 
     // Override JComponent.paint()
-    public void paint(Graphics g) {
-        for (Node node : graph.getNodeList()) {
-            node.paint(g);
-        }
-        for (Link link : graph.getEdgeList()) {
-            link.paint(g);
-        }
+    public void paint(Graphics g){
+        for(Node node: graph.getNodeList()){ node.paint(g); }
+        for(Link link : graph.getLinkList()){ link.paint(g); }
     }
 
     @Override
@@ -39,31 +31,31 @@ public class Canvas extends JPanel implements MouseListener {
      * Adding a new Node to the List of Nodes when LeftMouse Clicked
      * */
     public void mouseClicked(MouseEvent mouseEvent) {
-        if (mouseEvent.getButton() == MouseEvent.BUTTON1) {
+        if (mouseEvent.getButton() == MouseEvent.BUTTON1){
             if (graph.getNodeList().isEmpty()) {
                 graph.getNodeList().add(new Node(mouseEvent.getX(), mouseEvent.getY()));
                 repaint();
             } else {
                 boolean emptySpace = true;
-                for (Node node : graph.getNodeList()) {
-                    if (node.getOval().contains(mouseEvent.getPoint())) {
+                for(Node node : graph.getNodeList()){
+                    if(node.getOval().contains(mouseEvent.getPoint())){
                         emptySpace = false;
                     }
                 }
-                if (emptySpace) {
+                if(emptySpace) {
                     graph.getNodeList().add(new Node(mouseEvent.getX(), mouseEvent.getY()));
                     repaint();
                 }
             }
         }
-        if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
-            for (Node node : graph.getNodeList()) {
-                if (node.getOval().contains(mouseEvent.getPoint())) {
-                    if (node1 == null) {
+        if (mouseEvent.getButton() == MouseEvent.BUTTON3){
+            for(Node node: graph.getNodeList()){
+                if(node.getOval().contains(mouseEvent.getPoint())){
+                    if(node1 == null){
                         node1 = node;
-                    } else if (!node1.getOval().contains(mouseEvent.getPoint())) {
+                    } else if (!node1.getOval().contains(mouseEvent.getPoint())){
                         node2 = node;
-                        graph.getEdgeList().add(new Link(node1, node2));
+                        graph.getLinkList().add(new Link(node1, node2));
                         repaint();
                         node1 = null;
                         node2 = null;
@@ -74,20 +66,16 @@ public class Canvas extends JPanel implements MouseListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent mouseEvent) {
-    }
+    public void mousePressed(MouseEvent mouseEvent) {}
 
     @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-    }
+    public void mouseReleased(MouseEvent mouseEvent) {}
 
     @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-    }
+    public void mouseEntered(MouseEvent mouseEvent) {}
 
     @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-    }
+    public void mouseExited(MouseEvent mouseEvent) {}
 
     public String shortestPathDijkstra(int start, int objective) {
         Node actual = graph.getNodeList().get(start);
@@ -101,7 +89,7 @@ public class Canvas extends JPanel implements MouseListener {
 
         cost.put(start, new Integer[]{0, -1});
 
-        while (unvisited.contains(graph.getNodeList().get(objective))) {
+        while (unvisited.contains(graph.getNodeList().get(objective)) ) {
             //Actual = Pink   ***   Objective & Final Path = green  ***  Visited = Yellow
             actual.setColor(Color.PINK);
             waitFor();
@@ -116,8 +104,8 @@ public class Canvas extends JPanel implements MouseListener {
             }
             actual.setColor(Color.YELLOW);
             int lowerDistance = Integer.MAX_VALUE;
-            for (Node k : unvisited) {
-                if (cost.get(k.getIdentifier())[0] < lowerDistance) {
+            for(Node k: unvisited){
+                if (cost.get(k.getIdentifier())[0] < lowerDistance){
                     actual = k;
                     lowerDistance = cost.get(k.getIdentifier())[0];
                 }
@@ -129,7 +117,7 @@ public class Canvas extends JPanel implements MouseListener {
         }
         StringBuilder str = new StringBuilder("" + objective);
         graph.getNodeList().get(start).setColor(Color.GREEN);
-        while (objective != start) {
+        while(objective != start){
             graph.getNodeList().get(objective).setColor(Color.GREEN);
             objective = cost.get(objective)[1];
             str.insert(0, objective + " -> ");
@@ -138,7 +126,7 @@ public class Canvas extends JPanel implements MouseListener {
         return str.toString();
     }
 
-    private void waitFor() {
+    private void waitFor(){
         try {
             Thread.sleep(800);
             repaint();
@@ -154,17 +142,15 @@ public class Canvas extends JPanel implements MouseListener {
                 "\n 1 -> Predefined Graph 1" +
                 "\n 2 -> Predefined Graph 2" +
                 "\n 3 -> Predefined Graph 3"));
-
-        if (n == 1) {
-            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber1());
-        } else if (n == 2) {
-            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber2());
-        } else if (n == 3) {
+        if (n == 3) {
             canvas = new Canvas(PREDEFINED_GRAPH.graphNumber3());
+        } else if (n == 2){
+            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber2());
+        } else if (n == 1) {
+            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber1());
         } else {
             canvas = new Canvas();
         }
-
 
         JFrame window = new JFrame("Graphs");
         window.add(canvas);
@@ -173,8 +159,6 @@ public class Canvas extends JPanel implements MouseListener {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
-        System.out.println(canvas.shortestPathDijkstra(1, 4));
-        Warshall.warshallAlgorithm(canvas.graph);
-
+        System.out.println(canvas.shortestPathDijkstra(0,4));
     }
 }
