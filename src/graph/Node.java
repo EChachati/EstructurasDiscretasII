@@ -9,7 +9,7 @@ public class Node {
     public static final int diameter = 40;
     public static int id = 0;
     private final int identifier;
-    protected Map<Integer,Object[]> accessMap ; // 0 = Node, 1 = Link
+    protected Map<Integer,Object[]> accessMap; // 0 = Node, 1 = Link
     protected Map<Integer,Object[]> accessedByMap; // 0 = Node, 1 = Link
     public final Map<Integer,Object[]> undirectedMap; // 0 = Node, 1 = Link
     private Color color = Color.GRAY;
@@ -50,9 +50,7 @@ public class Node {
 
     public void setColor(Color color) { this.color = color; }
 
-    public Map getUndirectedMap() { return this.undirectedMap; }
-
-    public Map getAccessByMap(){ return this.accessedByMap; }
+    public Map<Integer, Object[]> getAccessByMap(){ return this.accessedByMap; }
 
     public Collection<Node> getAllAccessNodes() {
         Vector<Node> accessNodes = new Vector<>();
@@ -63,7 +61,7 @@ public class Node {
     }
 
     public Collection<Link> getAllAccessLinks(){
-        Vector<Link> access = new Vector<Link>();
+        Vector<Link> access = new Vector<>();
         for(Map.Entry<Integer, Object[]> entry: undirectedMap.entrySet()){
             access.add((Link) entry.getValue()[1]);
         }

@@ -3,7 +3,7 @@ package graph;
 import java.util.Arrays;
 import java.util.Vector;
 
-public class PREDEFINED_GRAPH {
+public class Predefined {
 
     public static Graph graphNumber1() {
         final Node[] nodeArray = {

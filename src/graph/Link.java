@@ -44,20 +44,19 @@ public class Link {
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
         Font linkFont = new Font("Serif", Font.BOLD, 20);
-        g2.setColor(Color.BLACK);
+        g2.setColor(this.color);
         g2.setFont(linkFont);
-        g2.drawLine(x1, y1, x2, y2);
         g2.drawString(Integer.toString(distance),(x1+x2)/2, (y1+y2)/2);
+        g2.drawLine(x1, y1, x2, y2);
     }
 
     public int getDistance() { return distance; }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
+    public void setColor(Color color) { this.color = color; }
 
     public String toString(){
-        return "FirstNode=" + node.get(0).getIdentifier() + " SecondNode=" + node.get(1).getIdentifier() +" Cost="+  distance;
+        return "From " + node.get(0).getIdentifier() + " To " + node.get(1).getIdentifier() +
+                "    Cost="+  distance;
     }
 }
 

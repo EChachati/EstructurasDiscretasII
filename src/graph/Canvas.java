@@ -4,9 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
 
 import algorithms.Dijkstra;
 import algorithms.Kruskal;
@@ -114,11 +111,11 @@ public class Canvas extends JPanel implements MouseListener {
                 "\n 3 -> Predefined Graph 3"));
 
         if (n == 1) {
-            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber1());
+            canvas = new Canvas(Predefined.graphNumber1());
         } else if (n == 2) {
-            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber2());
+            canvas = new Canvas(Predefined.graphNumber2());
         } else if (n == 3) {
-            canvas = new Canvas(PREDEFINED_GRAPH.graphNumber3());
+            canvas = new Canvas(Predefined.graphNumber3());
         } else {
             canvas = new Canvas();
         }
@@ -131,9 +128,9 @@ public class Canvas extends JPanel implements MouseListener {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
         
-        //System.out.println(Dijkstra.shortestPathDijkstra(canvas, 1, 4));
-        //canvas.reset();
-        //System.out.println(Kruskal.minimumSpanningTree(canvas));
+        System.out.println(Dijkstra.shortestPathDijkstra(canvas, 1, 4));
+        canvas.reset();
+        System.out.println(Kruskal.minimumSpanningTree(canvas));
         Warshall.warshallAlgorithm(canvas.graph);
     }
 }

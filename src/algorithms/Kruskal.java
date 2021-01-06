@@ -13,6 +13,7 @@ import static algorithms.Dijkstra.waitFor;
 public class Kruskal {
 
     public static int minimumSpanningTree(Canvas canvas){
+        // Accepted = GREEN  ***  Unaccepted = RED   ***  Checking = Yellow
         Graph graph = canvas.getGraph();
         waitFor(canvas);
         Vector<Link> usedLinks = new Vector<>();
@@ -55,10 +56,8 @@ public class Kruskal {
             }
         }
         for(Link link: usedLinks){
-        //    System.out.println(link.toString());
             cost += link.getDistance();
         }
-        //System.out.println("COST = " + cost);
         return cost;
     }
 

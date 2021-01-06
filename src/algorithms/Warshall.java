@@ -37,7 +37,7 @@ public class Warshall {
                         continue;
                     }
                     if(marshallMatrix.get(k).get(i) == 1 && marshallMatrix.get(j).get(k) == 1){
-                        Vector aux = marshallMatrix.get(j);
+                        Vector<Integer> aux = marshallMatrix.get(j);
                         aux.set(i, 1);
                         marshallMatrix.set(j, aux);
                     }
@@ -45,14 +45,8 @@ public class Warshall {
             }
             System.out.printf("Tabla del Nodo %s\n", k);
             VectorMethods.showMatrix(marshallMatrix);
-
-
         }
 
-
         return marshallMatrix;
-
     }
-
-
 }

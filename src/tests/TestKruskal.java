@@ -4,7 +4,7 @@ import algorithms.Kruskal;
 import graph.Graph;
 import graph.Link;
 import graph.Node;
-import graph.PREDEFINED_GRAPH;
+import graph.Predefined;
 
 import java.util.Arrays;
 import java.util.Vector;
@@ -76,9 +76,9 @@ public class TestKruskal {
         Vector<Boolean> ret = new Vector<>();
         Vector<Graph> graphs = new Vector<>();
         graphs.add(notCyclicgraphNumber2());
-        graphs.add(PREDEFINED_GRAPH.graphNumber1());
-        graphs.add(PREDEFINED_GRAPH.graphNumber2());
-        graphs.add(PREDEFINED_GRAPH.graphNumber3());
+        graphs.add(Predefined.graphNumber1());
+        graphs.add(Predefined.graphNumber2());
+        graphs.add(Predefined.graphNumber3());
         graphs.add(notCyclicgraphNumber1());
         graphs.add(ciclycGraphNumber1());
         ret.add(!Kruskal.isCycle(graphs.get(0).getLinkList()));
@@ -102,9 +102,9 @@ public class TestKruskal {
 
     public static boolean testKruskal(){
         Vector<Boolean> ret = new Vector<>();
-        ret.add(Kruskal.minimumSpanningTree(PREDEFINED_GRAPH.graphNumber1()) == 33);
-        ret.add(Kruskal.minimumSpanningTree(PREDEFINED_GRAPH.graphNumber2()) == 33);
-        ret.add(Kruskal.minimumSpanningTree(PREDEFINED_GRAPH.graphNumber3()) == 13);
+        ret.add(Kruskal.minimumSpanningTree(Predefined.graphNumber1()) == 33);
+        ret.add(Kruskal.minimumSpanningTree(Predefined.graphNumber2()) == 33);
+        ret.add(Kruskal.minimumSpanningTree(Predefined.graphNumber3()) == 13);
         System.out.println("Test 1 Kruskal -> " + ret.get(0));
         System.out.println("Test 2 Kruskal -> " + ret.get(1));
         System.out.println("Test 3 Kruskal -> " + ret.get(2));
