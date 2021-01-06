@@ -1,12 +1,8 @@
 package algorithms;
 
 import graph.Graph;
-import graph.Link;
 import graph.Node;
-import graph.Canvas;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 
 public class Warshall {
@@ -30,7 +26,7 @@ public class Warshall {
             marshall_matrix.add(aux_integers);
         }
         System.out.println("Tabla de adyacencia\n");
-        arrays_mehotds.showMatrix(marshall_matrix);
+        VectorMethods.showMatrix(marshall_matrix);
 
         for(byte k=0; k < nodes_list.size(); k++){
 
@@ -48,7 +44,7 @@ public class Warshall {
                 }
             }
             System.out.printf("Tabla del Nodo %s\n", k);
-            arrays_mehotds.showMatrix(marshall_matrix);
+            VectorMethods.showMatrix(marshall_matrix);
 
 
         }

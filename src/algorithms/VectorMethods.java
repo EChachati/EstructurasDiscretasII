@@ -2,7 +2,7 @@ package algorithms;
 
 import java.util.Vector;
 
-public class arrays_mehotds {
+public class VectorMethods {
 
     static void showMatrix(Vector<Vector <Integer>> matrix) {
 
