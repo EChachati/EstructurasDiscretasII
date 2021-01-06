@@ -32,10 +32,10 @@ public class Canvas extends JPanel implements MouseListener {
     public Graph getGraph() { return graph; }
 
     @Override
-    /*
-     * Adding a new Node to the List of Nodes when LeftMouse Clicked
-     * */
     public void mouseClicked(MouseEvent mouseEvent) {
+        /*
+         * Adding a new Node to the List of Nodes when LeftMouse Clicked
+         * */
         if (mouseEvent.getButton() == MouseEvent.BUTTON1) {
             if (graph.getNodeList().isEmpty()) {
                 graph.getNodeList().add(new Node(mouseEvent.getX(), mouseEvent.getY()));
@@ -53,6 +53,9 @@ public class Canvas extends JPanel implements MouseListener {
                 }
             }
         }
+        /*
+        * Adding a new Link when RightMouse clicked in two different nodes
+        * */
         if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
             for (Node node : graph.getNodeList()) {
                 if (node.getOval().contains(mouseEvent.getPoint())) {
