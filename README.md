@@ -8,3 +8,4 @@ Evaluación 1
     -> Preparar parte Grafica de los algorimos:
         - Warshall
         - Kruskal
+    -> Realizar ejercicios en Word
