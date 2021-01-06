@@ -11,12 +11,12 @@ public class Warshall {
         Vector<Vector<Integer>> marshallMatrix = new Vector<>(1, 1);
         Vector<Node> nodesList = graph.getNodeList();
 
-        for (byte i = 0; i < nodesList.size(); i++) {
+        for (Node node1: nodesList) {
             Vector<Integer> auxIntegers = new Vector<>(1, 1);
 
-            for (byte j = 0; j < nodesList.size(); j++) {
+            for (Node node2: nodesList ) {
 
-                if (nodesList.get(j).getAccessByMap().containsKey(nodesList.get(i).getIdentifier())) {
+                if (node2.getAccessByMap().containsKey(node1.getIdentifier())) {
                     auxIntegers.add(1);
                 } else {
                     auxIntegers.add(0);
