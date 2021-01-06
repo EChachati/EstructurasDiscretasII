@@ -1,15 +1,17 @@
 package graph;
 
 import java.awt.*;
+import java.util.Vector;
 
 public class Link {
     private final int x1, x2, y1, y2;
-    public final Node node1, node2;
+    public final Vector<Node> node;
     private final int distance;
 
     public Link(Node node1, Node node2){
-        this.node1 = node1;
-        this.node2 = node2;
+        this.node = new Vector<>();
+        node.add(node1);
+        node.add(node2);
         this.x1 = node1.getX();
         this.y1 = node1.getY();
         this.y2 = node2.getY();
@@ -22,8 +24,9 @@ public class Link {
     }
 
     public Link(Node node1, Node node2, int distance){
-        this.node1 = node1;
-        this.node2 = node2;
+        this.node = new Vector<>();
+        node.add(node1);
+        node.add(node2);
         this.distance = distance;
         this.x1 = node1.getX();
         this.y1 = node1.getY();
@@ -47,5 +50,9 @@ public class Link {
     }
 
     public int getDistance() { return distance; }
+
+    public String toString(){
+        return "FirstNode=" + node.get(0).getIdentifier() + " SecondNode=" + node.get(1).getIdentifier() +" Cost="+  distance;
+    }
 }
 

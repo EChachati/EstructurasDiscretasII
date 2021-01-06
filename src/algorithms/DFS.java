@@ -11,6 +11,7 @@ public class DFS {
         Vector<Node> unvisitedNodes = graph.getNodeList();
         Node actual = graph.getNodeList().get(0);
 
+        visitedNodes.add(actual);
 
 
 
