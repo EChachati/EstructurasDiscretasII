@@ -15,16 +15,23 @@ public class Canvas extends JPanel implements MouseListener {
     Node node1, node2 = null;
 
     public Canvas(Graph graph) {
+        this.setLayout(null);
+        this.setBounds(10,10,700,700);
         this.graph = graph;
+        this.addMouseListener(this);
     }
 
     public Canvas() {
+        this.setLayout(null);
+//        this.setSize(700,700);
+        this.setBounds(10,10,700,700);
         this.graph = new Graph();
         this.addMouseListener(this);
     }
 
     // Override JComponent.paint()
     public void paint(Graphics g){
+        g.drawRect(0,0,699,660);
         for(Node node: graph.getNodeList()){ node.paint(g); }
         for(Link link : graph.getLinkList()){ link.paint(g); }
     }
@@ -74,20 +81,16 @@ public class Canvas extends JPanel implements MouseListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent mouseEvent) {
-    }
+    public void mousePressed(MouseEvent mouseEvent) { }
 
     @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-    }
+    public void mouseReleased(MouseEvent mouseEvent) { }
 
     @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-    }
+    public void mouseEntered(MouseEvent mouseEvent) { }
 
     @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-    }
+    public void mouseExited(MouseEvent mouseEvent) { }
 
     public void reset(){
         for(Node node : graph.getNodeList()){
