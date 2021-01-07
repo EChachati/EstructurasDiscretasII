@@ -1,13 +1,12 @@
 package gui;
 
+import algorithms.Dijkstra;
 import graph.Canvas;
 import graph.Node;
 import graph.Predefined;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class DijkstraGUI extends JPanel {
     Canvas canvas;
@@ -57,32 +56,34 @@ public class DijkstraGUI extends JPanel {
 
 
         // Setting Buttons Events
-        chooseStartButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent pressed) {
-                if(start != null){start.setColor(Color.GRAY);}
-                start = canvas.getSelectedNode();
-                System.out.println("START IN GUI = " + start.getIdentifier());
-                if (start != null){
-                    data.setStart(String.valueOf(start.getIdentifier()));
-                    start.setColor(Color.PINK);
-                    canvas.repaint();
-                }
+        chooseStartButton.addActionListener(mousePressed -> {
+            if(start != null){start.setColor(Color.GRAY);}
+            start = canvas.getSelectedNode();
+            System.out.println("START IN GUI = " + start.getIdentifier());
+            if (start != null){
+                data.setStart(String.valueOf(start.getIdentifier()));
+                start.setColor(Color.PINK);
+                canvas.repaint();
             }
         });
 
-        chooseObjectiveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if(objective != null){objective.setColor(Color.GRAY);}
-                objective = canvas.getSelectedNode();
-                System.out.println("OBJECTIVE IN GUI = " + objective.getIdentifier());
-                if (objective != null){
-                    data.setObjective(String.valueOf(objective.getIdentifier()));
-                    objective.setColor(Color.GREEN);
-                    canvas.repaint();
-                }
+        chooseObjectiveButton.addActionListener(mousePressed -> {
+            if(objective != null){objective.setColor(Color.GRAY);}
+            objective = canvas.getSelectedNode();
+            System.out.println("OBJECTIVE IN GUI = " + objective.getIdentifier());
+            if (objective != null){
+                data.setObjective(String.valueOf(objective.getIdentifier()));
+                objective.setColor(Color.GREEN);
+                canvas.repaint();
             }
+        });
+
+        initAlgorithmButton.addActionListener( mousePressed -> {
+            System.out.println(canvas.hashCode());
+            System.out.println("PANEL = " + this.hashCode());
+            String path = Dijkstra.shortestPathDijkstra(canvas, start.getIdentifier(), objective.getIdentifier());
+            data.setOptimalPath(path);
+            canvas.repaint();
         });
 
     }
@@ -141,8 +142,8 @@ public class DijkstraGUI extends JPanel {
 
     static class Data extends JPanel {
 
-        String start = "-10";
-        String objective = "-10";
+        String start = "";
+        String objective = "";
         String optimal = "  C a m i n o   O p t i m o";
 
         public Data() {
@@ -170,6 +171,10 @@ public class DijkstraGUI extends JPanel {
         }
         public void setObjective(String objective){
             this.objective = objective;
+            repaint();
+        }
+        public void setOptimalPath(String path){
+            this.optimal = path;
             repaint();
         }
     }

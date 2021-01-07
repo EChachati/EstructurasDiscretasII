@@ -95,7 +95,6 @@ public class Canvas extends JPanel implements MouseListener {
                     }
                     if (node.getOval().contains(mouseEvent.getPoint())) {
                         this.selectedNode = node;
-                        System.out.println("Picked Node -> " + selectedNode.getIdentifier());
                         this.selectedNode.setColor(Color.BLUE);
                         repaint();
                     }
@@ -159,7 +158,7 @@ public class Canvas extends JPanel implements MouseListener {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
         
-        System.out.println(Dijkstra.shortestPathDijkstra(canvas, 1, 4));
+        //System.out.println(Dijkstra.shortestPathDijkstra(canvas, 1, 4));
         canvas.reset();
         System.out.println(Kruskal.minimumSpanningTree(canvas));
         Warshall.warshallAlgorithm(canvas.graph);
