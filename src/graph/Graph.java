@@ -9,6 +9,7 @@ public class Graph {
     public Graph() {}
 
     public Graph(Vector<Node> nodes, Vector<Link> links) {
+        Node.resetId();
         this.nodes = nodes;
         this.links = links;
     }

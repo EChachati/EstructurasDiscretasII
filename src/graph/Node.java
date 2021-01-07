@@ -48,9 +48,13 @@ public class Node {
 
     public int getY() { return y; }
 
-    public void setColor(Color color) { this.color = color; }
+    public void setColor(Color color) { this.color = color;}
 
     public Color getColor() { return color; }
+
+    public static void resetId(){
+        id = 0;
+    }
 
     public Map<Integer, Object[]> getAccessByMap(){ return this.accessedByMap; }
 

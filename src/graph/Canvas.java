@@ -2,6 +2,8 @@ package graph;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -26,7 +28,6 @@ public class Canvas extends JPanel implements MouseListener {
 
     public Canvas() {
         this.setLayout(null);
-//        this.setSize(700,700);
         this.setBounds(0,0,700,700);
         this.graph = new Graph();
         this.addMouseListener(this);
@@ -123,15 +124,9 @@ public class Canvas extends JPanel implements MouseListener {
         for(Link link: graph.getLinkList()){
             link.setColor(Color.BLACK);
         }
-        try {
-            Thread.sleep(1000);
-            repaint();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-
+        selectedNode = graph.getNodeList().get(0);
     }
+
     public static void main(String[] args) {
         Canvas canvas;
         int n = Integer.parseInt(JOptionPane.showInputDialog("Choose one:" +
@@ -150,17 +145,15 @@ public class Canvas extends JPanel implements MouseListener {
             canvas = new Canvas();
         }
 
-
-        JFrame window = new JFrame("Graphs");
+        JFrame window = new JFrame();
         window.add(canvas);
         window.setSize(500, 500);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLocationRelativeTo(null);
         window.setVisible(true);
         
-        //System.out.println(Dijkstra.shortestPathDijkstra(canvas, 1, 4));
-        canvas.reset();
-        System.out.println(Kruskal.minimumSpanningTree(canvas));
-        Warshall.warshallAlgorithm(canvas.graph);
+       // canvas.reset();
+        //ystem.out.println(Kruskal.minimumSpanningTree(canvas));
+        //Warshall.warshallAlgorithm(canvas.graph);
     }
 }

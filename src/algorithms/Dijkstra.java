@@ -5,6 +5,7 @@ import graph.Graph;
 import graph.Link;
 import graph.Node;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,7 +63,8 @@ public class Dijkstra {
         return str.toString();
     }
 
-    protected static void waitFor(Canvas canvas) {
+
+    public static void waitFor(Canvas canvas) {
         try {
             Thread.sleep(800);
             canvas.repaint();
