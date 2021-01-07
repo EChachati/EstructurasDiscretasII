@@ -18,6 +18,7 @@ public class Kruskal {
         waitFor(canvas);
         Vector<Link> usedLinks = new Vector<>();
         Vector<Link> unusedLinks = new Vector<>(sortLinksByDistance(graph.getLinkList()));
+
         int cost = 0;
         int x = 0;
         while(!unusedLinks.isEmpty() && x < 30){
