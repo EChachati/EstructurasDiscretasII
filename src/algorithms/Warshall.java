@@ -7,9 +7,10 @@ import java.util.Vector;
 
 public class Warshall {
 
-    public static Vector<Vector<Integer>> warshallAlgorithm(Graph graph) {
+    public static Vector<Vector<Vector<Integer>>> warshallAlgorithm(Graph graph) {
         Vector<Vector<Integer>> marshallMatrix = new Vector<>(1, 1);
         Vector<Node> nodesList = graph.getNodeList();
+        Vector<Vector<Vector<Integer>>> allTransitiveMatrix = new Vector<>(1,1);
 
         for (Node node1: nodesList) {
             Vector<Integer> auxIntegers = new Vector<>(1, 1);
@@ -25,8 +26,7 @@ public class Warshall {
             }
             marshallMatrix.add(auxIntegers);
         }
-        System.out.println("Tabla de adyacencia\n");
-        VectorMethods.showMatrix(marshallMatrix);
+        allTransitiveMatrix.add(new Vector<>(marshallMatrix));
 
         for(byte k=0; k < nodesList.size(); k++){
 
@@ -37,16 +37,33 @@ public class Warshall {
                         continue;
                     }
                     if(marshallMatrix.get(k).get(i) == 1 && marshallMatrix.get(j).get(k) == 1){
-                        Vector<Integer> aux = marshallMatrix.get(j);
+                        Vector<Integer> aux = new Vector<>(marshallMatrix.get(j));
                         aux.set(i, 1);
                         marshallMatrix.set(j, aux);
                     }
                 }
             }
-            System.out.printf("Tabla del Nodo %s\n", k);
-            VectorMethods.showMatrix(marshallMatrix);
+            allTransitiveMatrix.add(new Vector<>(marshallMatrix));
+
+
         }
 
-        return marshallMatrix;
+
+        for(byte i=0; i < allTransitiveMatrix.size(); i++){
+
+            if(i == 0){
+                System.out.println("Matriz de adyacencia");
+            }
+            else{
+                System.out.printf("Matriz del nodo %s \n",i-1);
+            }
+            VectorMethods.showMatrix(allTransitiveMatrix.get(i));
+        }
+
+
+        return allTransitiveMatrix;
+
     }
+
+
 }
