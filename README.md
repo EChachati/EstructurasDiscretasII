@@ -7,5 +7,11 @@ Evaluación 1
   
     -> Preparar parte Grafica de los algorimos:
         - Warshall
+    -> Create GUI:
+        - Menu
+        - Select Graph
+        - Dijkstra
         - Kruskal
+        - Warshall
     -> Realizar ejercicios en Word
+    
