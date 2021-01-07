@@ -50,6 +50,8 @@ public class Node {
 
     public void setColor(Color color) { this.color = color; }
 
+    public Color getColor() { return color; }
+
     public Map<Integer, Object[]> getAccessByMap(){ return this.accessedByMap; }
 
     public Collection<Node> getAllAccessNodes() {

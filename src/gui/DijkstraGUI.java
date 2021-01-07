@@ -1,10 +1,13 @@
 package gui;
 
 import graph.Canvas;
+import graph.Node;
 import graph.Predefined;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class DijkstraGUI extends JPanel {
     Canvas canvas;
@@ -18,30 +21,16 @@ public class DijkstraGUI extends JPanel {
     Leyend leyend = new Leyend();
     Data data = new Data();
 
-
-    class Data extends JPanel {
-
-        String start = "-10";
-        String objective = "-10";
-        String optimal = "0 -> 2 -> 6 -> 7 -> 5 -> 3";
-
-        public Data() {
-            this.setLayout(null);
-            this.setBounds(720, 355, 290, 111);
-        }
-        public void paint(Graphics g) {
-            g.drawRect(0, 0, 289, 110);
-            g.drawLine(0,37,289,37);
-            g.drawLine(0,74,289,74);
-            g.setFont(new Font("Fira Code SemiBold", Font.BOLD, 23));
-        }
-    }
+    Node start;
+    Node objective;
 
 
     public DijkstraGUI(Canvas canvas) {
+        // Setting Base Config
         this.setLayout(null);
         this.setSize(1024, 720);
 
+        //Adding All Elements
         this.canvas = canvas;
         this.add(canvas);
 
@@ -56,14 +45,45 @@ public class DijkstraGUI extends JPanel {
         this.add(leyend);
         this.add(data);
 
+
+        // Setting Buttons Location and Size
         this.chooseStartButton.setBounds(720, 70, 290, 60);
         this.chooseObjectiveButton.setBounds(720, 140, 290, 60);
-
         this.switchGraphButton.setBounds(720, 475, 290, 60);
         this.resetGraphButton.setBounds(720,545,290,60);
         this.initAlgorithmButton.setBounds(720, 615, 142, 55);
         this.backButton.setBounds(870,615,143   ,55);
 
+
+
+        // Setting Buttons Events
+        chooseStartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent pressed) {
+                if(start != null){start.setColor(Color.GRAY);}
+                start = canvas.getSelectedNode();
+                System.out.println("START IN GUI = " + start.getIdentifier());
+                if (start != null){
+                    data.setStart(String.valueOf(start.getIdentifier()));
+                    start.setColor(Color.PINK);
+                    canvas.repaint();
+                }
+            }
+        });
+
+        chooseObjectiveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if(objective != null){objective.setColor(Color.GRAY);}
+                objective = canvas.getSelectedNode();
+                System.out.println("OBJECTIVE IN GUI = " + objective.getIdentifier());
+                if (objective != null){
+                    data.setObjective(String.valueOf(objective.getIdentifier()));
+                    objective.setColor(Color.GREEN);
+                    canvas.repaint();
+                }
+            }
+        });
 
     }
 
@@ -82,16 +102,20 @@ public class DijkstraGUI extends JPanel {
 
     }
 
-    class Leyend extends JPanel {
+    static class Leyend extends JPanel {
         public Leyend(){
             this.setLayout(null);
             this.setBounds(720,210,290,136);
         }
         public void paint(Graphics g){
+            Graphics2D g2 = (Graphics2D) g;
             Graphics2D gGray = (Graphics2D) g;
             Graphics2D gGreen = (Graphics2D) g;
             Graphics2D gYellow = (Graphics2D) g;
             Graphics2D gPink = (Graphics2D) g;
+            g2.setColor(Color.LIGHT_GRAY);
+            g2.fillRect(0,0,289,135);
+            g.setColor(Color.BLACK);
             g.drawRect(0,0,289,135);
             gGray.setColor(Color.GRAY);
             gGray.fillRect(1, 1, 32, 33);
@@ -114,6 +138,42 @@ public class DijkstraGUI extends JPanel {
             g.drawString("NODO ACTUAL", 95, 125);
         }
     }
+
+    static class Data extends JPanel {
+
+        String start = "-10";
+        String objective = "-10";
+        String optimal = "  C a m i n o   O p t i m o";
+
+        public Data() {
+            this.setLayout(null);
+            this.setBounds(720, 355, 290, 111);
+        }
+        public void paint(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g;
+            g.setFont(new Font("Fira Code SemiBold", Font.BOLD, 23));
+            g2.setColor(Color.LIGHT_GRAY);
+            g2.fillRect(0,0,289,110);
+            g.setColor(Color.BLACK);
+            g.drawRect(0, 0, 289, 110);
+            g.drawLine(0,37,289,37);
+            g.drawLine(0,74,289,74);
+            g.drawString("Nodo Inicial: ", 5, 30 );
+            g.drawString(this.start, 180, 30 );
+            g.drawString("Nodo Objetivo: ", 5, 60 );
+            g.drawString(this.objective, 180, 60 );
+            g.drawString(this.optimal, 5, 100 );
+        }
+        public void setStart(String start){
+            this.start = start;
+            repaint();
+        }
+        public void setObjective(String objective){
+            this.objective = objective;
+            repaint();
+        }
+    }
+
     public static void main(String[] args) {
         Canvas canvas = new Canvas(Predefined.graphNumber1());
         DijkstraGUI D = new DijkstraGUI(canvas);
