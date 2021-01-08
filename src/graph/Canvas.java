@@ -1,5 +1,7 @@
 package graph;
 
+import algorithms.Kruskal;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -35,8 +37,8 @@ public class Canvas extends JPanel implements MouseListener {
         g2.fillRect(0,0,699,659);
         g.setColor(Color.BLACK);
         g.drawRect(0,0,699,660);
-        for(Node node: graph.getNodeList()){ node.paint(g); }
         for(Link link : graph.getLinkList()){ link.paint(g); }
+        for(Node node: graph.getNodeList()){ node.paint(g); }
     }
 
     public Graph getGraph() { return graph; }
@@ -146,6 +148,8 @@ public class Canvas extends JPanel implements MouseListener {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLocationRelativeTo(null);
         window.setVisible(true);
+
+        Kruskal.minimumSpanningTree(canvas);
 
     }
 }

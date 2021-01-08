@@ -30,7 +30,7 @@ public class Kruskal {
                 usedLinks.lastElement().setColor(Color.RED);
                 usedLinks.remove(usedLinks.lastElement());
             } else {
-                usedLinks.lastElement().setColor(Color.GREEN);
+                usedLinks.lastElement().setColor(Color.GREEN.darker());
             }
             //waitFor(canvas);
         }

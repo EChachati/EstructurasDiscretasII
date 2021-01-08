@@ -38,7 +38,7 @@ public class DijkstraGUI extends JPanel {
 
         // Creating Components
         Title title = new Title("ALGORIMO DE DIJKSTRA");
-        Legend legend = new Legend();
+        gui.dijkstra.Legend legend = new gui.dijkstra.Legend();
         Data data = new Data();
         //Adding All Elements
         this.add(canvas);
@@ -177,7 +177,6 @@ public class DijkstraGUI extends JPanel {
             /*
              * Go Back to Main Menu
              */
-
             frame.setContentPane(new Menu(frame));
             frame.invalidate();
             frame.validate();
