@@ -20,7 +20,6 @@ public class KruskalGUI extends JPanel {
     private final Graph graph;
     private final Vector<Link> unusedLinks;
     private final Vector<Link> usedLinks = new Vector<>();
-    private final Vector<Link> unvalidLinks = new Vector<>();
     private final Vector<Link> allLinks ;
     private int cost = 0;
     private Link actual;
@@ -76,7 +75,6 @@ public class KruskalGUI extends JPanel {
                     if(isCycle(usedLinks)){ // UNACCEPTABLE, Generates Cycle
                         actual.setColor(Color.RED);
                         usedLinks.remove(actual);
-                        unvalidLinks.add(actual);
                     } else { // ACCEPTABLE, Does not generate Cycle
                         actual.setColor(Color.GREEN.darker());
                         cost += actual.getDistance();
@@ -93,31 +91,37 @@ public class KruskalGUI extends JPanel {
         });
 
 
-        backIterationButton.addActionListener( mousePressed -> {
-            if(actual.getColor() == Color.GREEN.darker()){
-                // NOT WORKING
-                actual.setColor(Color.YELLOW);
-                cost -= actual.getDistance();
-                data.setActualCost(cost);
-                unusedLinks.add(0, actual);
+            backIterationButton.addActionListener(mousePressed -> {
+                try {
+                if (actual.getColor() == Color.RED) {
+                    actual.setColor(Color.YELLOW);
+                    usedLinks.add(actual);
+                    unusedLinks.add(0, actual);
 
-            } else if(actual.getColor() == Color.RED){
-                actual.setColor(Color.YELLOW);
-                usedLinks.add(actual);
-                unusedLinks.add(0, actual);
+                } else if (actual.getColor() == Color.YELLOW) {
+                    actual.setColor(Color.BLACK);
+                    usedLinks.remove(actual);
+                    if (allLinks.indexOf(actual) == 0) {
+                        canvas.reset();
+                        frame.setContentPane(new KruskalGUI(canvas, frame));
+                        frame.invalidate();
+                        frame.validate();
 
-            } else if(actual.getColor() == Color.YELLOW){
-                actual.setColor(Color.BLACK);
-                usedLinks.remove(actual);
+                    } else {
+                        actual = allLinks.get(allLinks.indexOf(actual) - 1);
+                    }
 
-            } else { // is Black
-                // NOT WORKING
-                System.out.println("isBlack");
-                actual = allLinks.get(allLinks.indexOf(actual)-1);
-                data.setActualLink(actual);
-            }
-            canvas.repaint();
-        });
+                } else { // green fuck u
+                    actual.setColor(Color.YELLOW);
+                    cost -= actual.getDistance();
+                    data.setActualCost(cost);
+                    unusedLinks.add(0, actual);
+                }
+                } catch (NullPointerException a) {
+                    System.out.println("No puedes volver mas");
+                }
+                canvas.repaint();
+            });
 
 
         resetGraphButton.addActionListener(mousePressed -> {
