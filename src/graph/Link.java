@@ -58,5 +58,7 @@ public class Link {
         return "From " + node.get(0).getIdentifier() + " To " + node.get(1).getIdentifier() +
                 "    Cost="+  distance;
     }
+
+    public Color getColor() { return color; }
 }
 

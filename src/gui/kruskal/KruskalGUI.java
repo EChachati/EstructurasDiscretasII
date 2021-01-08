@@ -17,10 +17,11 @@ import static algorithms.Kruskal.isCycle;
 import static algorithms.Kruskal.sortLinksByDistance;
 
 public class KruskalGUI extends JPanel {
-    private Graph graph;
-    private Vector<Link> unusedLinks;
-    private Vector<Link> usedLinks = new Vector<>();
-    private Vector<Link> unvalidLinks = new Vector<>();
+    private final Graph graph;
+    private final Vector<Link> unusedLinks;
+    private final Vector<Link> usedLinks = new Vector<>();
+    private final Vector<Link> unvalidLinks = new Vector<>();
+    private final Vector<Link> allLinks ;
     private int cost = 0;
     private Link actual;
 
@@ -28,7 +29,7 @@ public class KruskalGUI extends JPanel {
 
         graph = canvas.getGraph();
         unusedLinks = new Vector<>(sortLinksByDistance(graph.getLinkList()));
-
+        allLinks = new Vector<>(sortLinksByDistance(graph.getLinkList()));
 
         // Setting Base Config
         this.setLayout(null);
@@ -67,7 +68,7 @@ public class KruskalGUI extends JPanel {
         menuButton.setBounds         (720, 615, 290, 60);
 
         nextIterationButton.addActionListener( mousePressed -> {
-            if(!unusedLinks.isEmpty()){
+            if(usedLinks.size() != graph.getNodeList().size()-1 || actual.getColor() == Color.YELLOW){
 
                 if(unusedLinks.contains(actual)){ // If there's a new Actual Link
                     // Check if the ActualLink generates a cycle
@@ -82,8 +83,8 @@ public class KruskalGUI extends JPanel {
                         data.setActualCost(cost);
                     }
                 } else { // If need to find a new actual Link
-                    usedLinks.add(unusedLinks.firstElement());
-                    actual = usedLinks.lastElement();
+                    actual = unusedLinks.firstElement();
+                    usedLinks.add(actual);
                     actual.setColor(Color.yellow);
                     data.setActualLink(actual);
                 }
@@ -91,27 +92,40 @@ public class KruskalGUI extends JPanel {
             canvas.repaint();
         });
 
-        /*
+
         backIterationButton.addActionListener( mousePressed -> {
-            if(unusedLinks.contains(actual)){
-                // set down actual link
-                actual.setColor(Color.BLACK);
-            } else {
-                // set yellow last checked link usedlinks
-                actual = usedLinks.lastElement();
+            if(actual.getColor() == Color.GREEN.darker()){
+                // NOT WORKING
                 actual.setColor(Color.YELLOW);
-                usedLinks.remove(actual);
+                cost -= actual.getDistance();
+                data.setActualCost(cost);
                 unusedLinks.add(0, actual);
+
+            } else if(actual.getColor() == Color.RED){
+                actual.setColor(Color.YELLOW);
+                usedLinks.add(actual);
+                unusedLinks.add(0, actual);
+
+            } else if(actual.getColor() == Color.YELLOW){
+                actual.setColor(Color.BLACK);
+                usedLinks.remove(actual);
+
+            } else { // is Black
+                // NOT WORKING
+                System.out.println("isBlack");
+                actual = allLinks.get(allLinks.indexOf(actual)-1);
+                data.setActualLink(actual);
             }
+            canvas.repaint();
         });
-         */
+
 
         resetGraphButton.addActionListener(mousePressed -> {
             /*
              * Set the Graph Canvas to his initial state
              */
             canvas.reset();
-            frame.setContentPane(new KruskalGUI(canvas, frame));;
+            frame.setContentPane(new KruskalGUI(canvas, frame));
             frame.invalidate();
             frame.validate();
         });
