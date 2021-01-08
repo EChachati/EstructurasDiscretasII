@@ -8,7 +8,6 @@ import graph.Node;
 
 import java.util.*;
 
-import static algorithms.Dijkstra.waitFor;
 
 public class Kruskal {
 

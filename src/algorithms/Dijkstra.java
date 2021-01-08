@@ -5,7 +5,6 @@ import graph.Graph;
 import graph.Link;
 import graph.Node;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;

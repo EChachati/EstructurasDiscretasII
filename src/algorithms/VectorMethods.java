@@ -12,7 +12,7 @@ public class VectorMethods {
 
                 System.out.printf("%7s",matrix.get(i).get(j));
             }
-            System.out.println("");
+            System.out.println();
         }
 
     }

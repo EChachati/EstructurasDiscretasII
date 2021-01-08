@@ -2,14 +2,9 @@ package graph;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import algorithms.Dijkstra;
-import algorithms.Kruskal;
-import algorithms.Warshall;
 
 public class Canvas extends JPanel implements MouseListener {
 
@@ -151,9 +146,6 @@ public class Canvas extends JPanel implements MouseListener {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-        
-       // canvas.reset();
-        //ystem.out.println(Kruskal.minimumSpanningTree(canvas));
-        //Warshall.warshallAlgorithm(canvas.graph);
+
     }
 }
