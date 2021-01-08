@@ -20,6 +20,7 @@ public class KruskalGUI extends JPanel {
     private Graph graph;
     private Vector<Link> unusedLinks;
     private Vector<Link> usedLinks = new Vector<>();
+    private Vector<Link> unvalidLinks = new Vector<>();
     private int cost = 0;
     private Link actual;
 
@@ -74,6 +75,7 @@ public class KruskalGUI extends JPanel {
                     if(isCycle(usedLinks)){ // UNACCEPTABLE, Generates Cycle
                         actual.setColor(Color.RED);
                         usedLinks.remove(actual);
+                        unvalidLinks.add(actual);
                     } else { // ACCEPTABLE, Does not generate Cycle
                         actual.setColor(Color.GREEN.darker());
                         cost += actual.getDistance();
@@ -89,18 +91,29 @@ public class KruskalGUI extends JPanel {
             canvas.repaint();
         });
 
+        /*
         backIterationButton.addActionListener( mousePressed -> {
-
+            if(unusedLinks.contains(actual)){
+                // set down actual link
+                actual.setColor(Color.BLACK);
+            } else {
+                // set yellow last checked link usedlinks
+                actual = usedLinks.lastElement();
+                actual.setColor(Color.YELLOW);
+                usedLinks.remove(actual);
+                unusedLinks.add(0, actual);
+            }
         });
+         */
 
         resetGraphButton.addActionListener(mousePressed -> {
             /*
              * Set the Graph Canvas to his initial state
              */
             canvas.reset();
-            data.setDefaultCost();
-            data.setDefaultLink();
-            canvas.repaint();
+            frame.setContentPane(new KruskalGUI(canvas, frame));;
+            frame.invalidate();
+            frame.validate();
         });
 
         switchGraphButton.addActionListener(actionEvent -> {
