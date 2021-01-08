@@ -9,14 +9,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+import static com.sun.deploy.uitoolkit.ToolkitStore.dispose;
+
 public class DijkstraGUI extends JPanel{
-    private final Canvas canvas;
     private final JButton chooseStartButton = new JButton("Elige Nodo Inicial");
     private final JButton chooseObjectiveButton = new JButton("Elige Nodo Objetivo");
     private final JButton switchGraphButton = new JButton("Cambiar Grafo");
     private final JButton resetGraphButton = new JButton("Reiniciar Grafo");
-    private final JButton initAlgorithmButton = new JButton("Siguente");
-    private final JButton backButton = new JButton("Volver");
+    private final JButton initAlgorithmButton = new JButton("Siguente Iteracion");
+    private final JButton backButton = new JButton("Menu");
     private final Title title = new Title("ALGORIMO DE DIJKSTRA");
     private final Leyend leyend = new Leyend();
     private final Data data = new Data();
@@ -24,18 +25,17 @@ public class DijkstraGUI extends JPanel{
     private Node start ;
     private Node objective;
     private Node actual;
-    private final Graph graph;
+    private Graph graph;
     private Vector<Node> unvisited;
     private Map<Integer, Integer[]> cost = new HashMap<>(); // NodeID ->  0 ShortestPathFromStart, 1 PreviousVertexID
 
 
-    public DijkstraGUI(Canvas canvas) {
+    public DijkstraGUI(Canvas canvas, MainFrame frame) {
         // Setting Base Config
         this.setLayout(null);
         this.setSize(1024, 720);
 
         //Adding All Elements
-        this.canvas = canvas;
         this.add(canvas);
         this.graph = canvas.getGraph();
 
@@ -54,10 +54,10 @@ public class DijkstraGUI extends JPanel{
         // Setting Buttons Location and Size
         this.chooseStartButton.setBounds(720, 70, 290, 60);
         this.chooseObjectiveButton.setBounds(720, 140, 290, 60);
-        this.switchGraphButton.setBounds(720, 475, 290, 60);
-        this.resetGraphButton.setBounds(720,545,290,60);
-        this.initAlgorithmButton.setBounds(720, 615, 142, 55);
-        this.backButton.setBounds(870,615,143   ,55);
+        this.switchGraphButton.setBounds(720,545,290,60);
+        this.resetGraphButton.setBounds(870,615,143   ,55);
+        this.initAlgorithmButton.setBounds(720, 475, 290, 60);
+        this.backButton.setBounds(720, 615, 142, 55);
 
 
         unvisited = new Vector<> (graph.getNodeList());
@@ -144,8 +144,20 @@ public class DijkstraGUI extends JPanel{
             canvas.repaint();
         });
 
+        switchGraphButton.addActionListener(actionEvent -> {
+            frame.setContentPane(new ChooseGraph(ChooseGraph.DIJKSTRA_ALGORITHM, frame));
+            frame.invalidate();
+            frame.validate();
+        }) ;
 
+        backButton.addActionListener( x -> {
+            frame.setContentPane(new Menu(frame));
+            frame.invalidate();
+            frame.validate();
+        });
     }
+
+    public void setGraph(Graph graph){ this.graph = graph; }
 
     static class Title extends JPanel {
         String title ;
@@ -238,15 +250,4 @@ public class DijkstraGUI extends JPanel{
         }
     }
 
-    public static void main(String[] args) {
-        Canvas canvas = new Canvas(Predefined.graphNumber1());
-        DijkstraGUI D = new DijkstraGUI(canvas);
-        JFrame window = new JFrame("Graphs");
-        window.add(D);
-        window.setSize(1024, 720);
-        window.setResizable(false);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
-    }
 }
