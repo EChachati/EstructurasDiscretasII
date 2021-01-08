@@ -103,14 +103,17 @@ public class Kruskal {
         return ret;
     }
 
-    private static Collection<Link> sortLinksByDistance(Vector<Link> links) {
+    public static Collection<Link> sortLinksByDistance(Vector<Link> links) {
+
+         class LinkComparator implements Comparator<Link> {
+            public int compare(Link a, Link b){
+                return a.getDistance() - b.getDistance();
+            }
+        }
+
         links.sort(new LinkComparator());
         return links;
     }
 
-    static class LinkComparator implements Comparator<Link> {
-        public int compare(Link a, Link b){
-            return a.getDistance() - b.getDistance();
-        }
-    }
+
 }

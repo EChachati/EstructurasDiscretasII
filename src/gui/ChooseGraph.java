@@ -3,6 +3,7 @@ package gui;
 import graph.Canvas;
 import graph.Predefined;
 import gui.dijkstra.DijkstraGUI;
+import gui.kruskal.KruskalGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,6 +41,11 @@ public class ChooseGraph extends JPanel {
                 frame.setContentPane(new DijkstraGUI(new Canvas(Predefined.graphNumber1()), frame));
                 frame.invalidate();
                 frame.validate();
+            } else if(selectedAlgorithm == (ChooseGraph.KRUSKAL_ALGORITHM)){
+                setVisible(false);
+                frame.setContentPane(new KruskalGUI(new Canvas(Predefined.graphNumber1()), frame));
+                frame.invalidate();
+                frame.validate();
             }
         });
 
@@ -49,6 +55,11 @@ public class ChooseGraph extends JPanel {
                 frame.setContentPane(new DijkstraGUI(new Canvas(Predefined.graphNumber2()), frame));
                 frame.invalidate();
                 frame.validate();
+            } else if(selectedAlgorithm == (ChooseGraph.KRUSKAL_ALGORITHM)){
+                setVisible(false);
+                frame.setContentPane(new KruskalGUI(new Canvas(Predefined.graphNumber2()), frame));
+                frame.invalidate();
+                frame.validate();
             }
         });
 
@@ -56,6 +67,11 @@ public class ChooseGraph extends JPanel {
             if(selectedAlgorithm == (ChooseGraph.DIJKSTRA_ALGORITHM)){
                 setVisible(false);
                 frame.setContentPane(new DijkstraGUI(new Canvas(Predefined.graphNumber3()), frame));
+                frame.invalidate();
+                frame.validate();
+            } else if(selectedAlgorithm == (ChooseGraph.KRUSKAL_ALGORITHM)){
+                setVisible(false);
+                frame.setContentPane(new KruskalGUI(new Canvas(Predefined.graphNumber3()), frame));
                 frame.invalidate();
                 frame.validate();
             }

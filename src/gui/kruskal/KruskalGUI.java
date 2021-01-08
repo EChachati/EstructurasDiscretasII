@@ -1,18 +1,34 @@
 package gui.kruskal;
 
 import graph.Canvas;
+import graph.Graph;
+import graph.Link;
 import graph.Predefined;
+import gui.ChooseGraph;
 import gui.MainFrame;
-import gui.dijkstra.Data;
-import gui.dijkstra.Legend;
+import gui.Menu;
 import gui.dijkstra.Title;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Vector;
+
+import static algorithms.Kruskal.isCycle;
+import static algorithms.Kruskal.sortLinksByDistance;
 
 public class KruskalGUI extends JPanel {
+    private Graph graph;
+    private Vector<Link> unusedLinks;
+    private Vector<Link> usedLinks = new Vector<>();
+    private int cost = 0;
+    private Link actual;
 
     public KruskalGUI(Canvas canvas, MainFrame frame){
+
+        graph = canvas.getGraph();
+        unusedLinks = new Vector<>(sortLinksByDistance(graph.getLinkList()));
+
+
         // Setting Base Config
         this.setLayout(null);
         this.setSize(1024, 720);
@@ -48,7 +64,64 @@ public class KruskalGUI extends JPanel {
         resetGraphButton.setBounds   (720, 475, 290, 60);
         switchGraphButton.setBounds  (720, 545, 290, 60);
         menuButton.setBounds         (720, 615, 290, 60);
+
+        nextIterationButton.addActionListener( mousePressed -> {
+            if(!unusedLinks.isEmpty()){
+
+                if(unusedLinks.contains(actual)){ // If there's a new Actual Link
+                    // Check if the ActualLink generates a cycle
+                    unusedLinks.remove(actual);
+                    if(isCycle(usedLinks)){ // UNACCEPTABLE, Generates Cycle
+                        actual.setColor(Color.RED);
+                        usedLinks.remove(actual);
+                    } else { // ACCEPTABLE, Does not generate Cycle
+                        actual.setColor(Color.GREEN.darker());
+                        cost += actual.getDistance();
+                        data.setActualCost(cost);
+                    }
+                } else { // If need to find a new actual Link
+                    usedLinks.add(unusedLinks.firstElement());
+                    actual = usedLinks.lastElement();
+                    actual.setColor(Color.yellow);
+                    data.setActualLink(actual);
+                }
+            }
+            canvas.repaint();
+        });
+
+        backIterationButton.addActionListener( mousePressed -> {
+
+        });
+
+        resetGraphButton.addActionListener(mousePressed -> {
+            /*
+             * Set the Graph Canvas to his initial state
+             */
+            canvas.reset();
+            data.setDefaultCost();
+            data.setDefaultLink();
+            canvas.repaint();
+        });
+
+        switchGraphButton.addActionListener(actionEvent -> {
+            /*
+             * Go Back to Choose Algorithm Menu
+             */
+            frame.setContentPane(new ChooseGraph(ChooseGraph.KRUSKAL_ALGORITHM, frame));
+            frame.invalidate();
+            frame.validate();
+        });
+
+        menuButton.addActionListener(x -> {
+            /*
+             * Go Back to Main Menu
+             */
+            frame.setContentPane(new Menu(frame));
+            frame.invalidate();
+            frame.validate();
+        });
     }
+
 
     public static void main(String[] args) {
         MainFrame w = new MainFrame();
