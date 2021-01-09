@@ -10,4 +10,8 @@ Evaluación 1
     -> Create GUI and connect:
         - Warshall
     -> Realizar ejercicios en Word
+  
+  To Fix:
     
+    -> Reset Button in DijkstraGUI
+    -> Predefined Graph
