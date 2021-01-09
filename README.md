@@ -8,7 +8,10 @@ Evaluación 1
     -> Preparar parte Grafica de los algorimos:
         - Warshall
     -> Create GUI and connect:
-        - Kruskal
         - Warshall
     -> Realizar ejercicios en Word
+  
+  To Fix:
     
+    -> Reset Button in DijkstraGUI
+    -> Predefined Graph
