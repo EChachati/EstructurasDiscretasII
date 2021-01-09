@@ -16,22 +16,18 @@ public class Warshall {
             Vector<Integer> auxIntegers = new Vector<>(1, 1);
 
             for (Node node2: nodesList ) {
-
                 if (node2.getAccessByMap().containsKey(node1.getIdentifier())) {
                     auxIntegers.add(1);
                 } else {
                     auxIntegers.add(0);
                 }
-
             }
             warshallMatrix.add(auxIntegers);
         }
         allTransitiveMatrix.add(new Vector<>(warshallMatrix));
 
         for(byte k=0; k < nodesList.size(); k++){
-
             for(byte i=0; i < warshallMatrix.size(); i++){
-
                 for(byte j=0; j < warshallMatrix.size(); j++){
                     if(i == k || j == k){
                         continue;
@@ -44,13 +40,9 @@ public class Warshall {
                 }
             }
             allTransitiveMatrix.add(new Vector<>(warshallMatrix));
-
-
         }
 
-
         for(byte i=0; i < allTransitiveMatrix.size(); i++){
-
             if(i == 0){
                 System.out.println("Matriz de adyacencia");
             }
@@ -60,10 +52,6 @@ public class Warshall {
             VectorMethods.showMatrix(allTransitiveMatrix.get(i));
         }
 
-
         return allTransitiveMatrix;
-
     }
-
-
 }
