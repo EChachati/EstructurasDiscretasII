@@ -64,30 +64,30 @@ public class Kruskal {
     public static boolean isCycle(Vector<Link> links) {
         Vector<Link> usedLinks = new Vector<>(links);
         Link newLink = usedLinks.lastElement();
-        Queue<Node> nodeQueueA = new LinkedList<>();
+        Queue<Node> nodeQueue = new LinkedList<>();
         Vector<Node> visitedNodes = new Vector<>();
-        Node actualA = newLink.node.get(0);
-        nodeQueueA.offer(actualA);
+        Node actual = newLink.node.get(0);
+        nodeQueue.offer(actual);
 
-        while(!nodeQueueA.isEmpty()){
+        while(!nodeQueue.isEmpty()){
 
-            actualA = nodeQueueA.poll();
-            if(visitedNodes.contains(actualA)){return true;}
-            Vector<Link> actualALinks = removeAllNotIn(actualA.getAllAccessLinks(), usedLinks);
+            actual = nodeQueue.poll();
+            if(visitedNodes.contains(actual)){return true;}
+            Vector<Link> actualALinks = removeAllNotIn(actual.getAllAccessLinks(), usedLinks);
 
             for(Link link: actualALinks){
-                if(link.node.get(0) != actualA){
+                if(link.node.get(0) != actual){
                     if (!visitedNodes.contains(link.node.get(0))){
-                    nodeQueueA.offer(link.node.get(0));
+                    nodeQueue.offer(link.node.get(0));
                     }
                 } else {
                     if (!visitedNodes.contains(link.node.get(1))){
-                        nodeQueueA.offer(link.node.get(1));
+                        nodeQueue.offer(link.node.get(1));
                     }
                 }
                 usedLinks.remove(link);
             }
-            visitedNodes.add(actualA);
+            visitedNodes.add(actual);
         }
         return false;
     }
@@ -114,6 +114,4 @@ public class Kruskal {
         links.sort(new LinkComparator());
         return links;
     }
-
-
 }

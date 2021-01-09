@@ -3,7 +3,6 @@ package gui.kruskal;
 import graph.Canvas;
 import graph.Graph;
 import graph.Link;
-import graph.Predefined;
 import gui.ChooseGraph;
 import gui.MainFrame;
 import gui.Menu;
@@ -42,7 +41,7 @@ public class KruskalGUI extends JPanel {
         JButton menuButton = new JButton("Menu");
 
         // Creating Components
-        Title title = new Title("ALGORIMO DE KRUSKAL");
+        Title title = new Title("ALGORITMO DE KRUSKAL");
         gui.kruskal.Legend legend = new gui.kruskal.Legend();
         gui.kruskal.Data data = new gui.kruskal.Data();
         data.setBounds(720, 210, 290, 111);
@@ -76,7 +75,7 @@ public class KruskalGUI extends JPanel {
                         actual.setColor(Color.RED);
                         usedLinks.remove(actual);
                     } else { // ACCEPTABLE, Does not generate Cycle
-                        actual.setColor(Color.GREEN.darker());
+                        actual.setColor(Color.GREEN.darker().darker());
                         cost += actual.getDistance();
                         data.setActualCost(cost);
                     }
@@ -153,16 +152,4 @@ public class KruskalGUI extends JPanel {
         });
     }
 
-
-    public static void main(String[] args) {
-        MainFrame w = new MainFrame();
-        JFrame window = new JFrame();
-        window.add(new KruskalGUI(new Canvas(Predefined.graphNumber1()), w));
-        window.setSize(1028, 720);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setLocationRelativeTo(null);
-        window.setResizable(false);
-        window.setVisible(true);
-    }
 }
-

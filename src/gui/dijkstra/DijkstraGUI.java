@@ -5,6 +5,7 @@ import graph.Canvas;
 import gui.ChooseGraph;
 import gui.MainFrame;
 import gui.Menu;
+import gui.kruskal.KruskalGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -157,11 +158,9 @@ public class DijkstraGUI extends JPanel {
              * Set the Graph Canvas to his initial state
              */
             canvas.reset();
-            start = canvas.getSelectedNode();
-            data.setStart("");
-            data.setObjective("");
-            data.setOptimalPath("  C a m i n o   O p t i m o");
-            canvas.repaint();
+            frame.setContentPane(new DijkstraGUI(canvas, frame));
+            frame.invalidate();
+            frame.validate();
         });
 
         switchGraphButton.addActionListener(actionEvent -> {

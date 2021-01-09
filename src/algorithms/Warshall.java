@@ -60,7 +60,6 @@ public class Warshall {
             VectorMethods.showMatrix(allTransitiveMatrix.get(i));
         }
 
-
         return allTransitiveMatrix;
 
     }
