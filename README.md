@@ -5,13 +5,4 @@ Evaluación 1
 
   Pendiente:
   
-    -> Preparar parte Grafica de los algorimos:
-        - Warshall
-    -> Create GUI and connect:
-        - Warshall
     -> Realizar ejercicios en Word
-  
-  To Fix:
-    
-    -> Reset Button in DijkstraGUI
-    -> Predefined Graph
