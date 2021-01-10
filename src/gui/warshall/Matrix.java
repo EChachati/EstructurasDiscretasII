@@ -26,7 +26,6 @@ public class Matrix extends JPanel {
         this.nodeQuantity = matrix.size();
         DEFAULT_HEIGHT = 660 / (nodeQuantity+1);
         DEFAULT_WIDTH = 700 / (nodeQuantity+1);
-
     }
 
     public Matrix (Vector<Vector<Integer>> matrix){
@@ -40,7 +39,10 @@ public class Matrix extends JPanel {
 
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
-
+        Graphics2D g3 = (Graphics2D) g;
+        g3.setColor(Color.LIGHT_GRAY);
+        g3.fillRect(0,0,699,699
+        );
         width = -DEFAULT_WIDTH;
         height = 0;
         g2.setColor(Color.GREEN);
@@ -57,7 +59,6 @@ public class Matrix extends JPanel {
                     g.setColor(Color.BLACK);
                     g.drawString(Integer.toString(i), width + (DEFAULT_WIDTH/2), height + (DEFAULT_HEIGHT/2));
                 }
-
                 width += DEFAULT_WIDTH;
                 if(matrix.get(i).get(j) == 1){
                     g2.setColor(Color.GREEN);
@@ -74,12 +75,25 @@ public class Matrix extends JPanel {
             width += DEFAULT_WIDTH;
             height += DEFAULT_HEIGHT;
         }
+        g.drawRect(0,0,699,699);
+    }
+
+    public Matrix getEmptyMatrix() {
+        Vector<Vector<Integer>> matrix = new Vector<>();
+        Vector<Integer> vector = new Vector<>();
+        for (byte i = 0; i < nodeQuantity; i++) {
+            vector.add(0);
+        }for (byte i = 0; i < nodeQuantity; i++) {
+            matrix.add(vector);
+        }
+        return new Matrix(matrix);
+
     }
 
     public static void main(String[] args) {
         JFrame window = new JFrame();
         Vector<Vector<Vector<Integer>>> allTransitiveMatrix = Warshall.warshallAlgorithm(Predefined.graphNumber1());
-        Matrix mat = new Matrix(allTransitiveMatrix, 8);
+        Matrix mat = new Matrix(allTransitiveMatrix, 6);
         window.add(mat);
         window.setSize(700, 700);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

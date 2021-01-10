@@ -6,9 +6,10 @@ import java.util.*;
 public class Node {
     private final int x;
     private final int y;
-    public static final int diameter = 40;
+    private static int diameter = 40;
     public static int id = 0;
     private final int identifier;
+    private static Font font =  new Font("",Font.BOLD,30);
     protected Map<Integer,Object[]> accessMap; // 0 = Node, 1 = Link
     protected Map<Integer,Object[]> accessedByMap; // 0 = Node, 1 = Link
     public final Map<Integer,Object[]> undirectedMap; // 0 = Node, 1 = Link
@@ -33,8 +34,6 @@ public class Node {
         g2.setColor(this.color);
         g2.drawOval(this.x - diameter/2,this.y - diameter/2, diameter, diameter);
         g2.fillOval(this.x - diameter/2,this.y - diameter/2, diameter, diameter);
-
-        Font font = new Font("",Font.BOLD,30);
         g3.setColor(Color.BLACK);
         g3.setFont(font);
         g3.drawString(Integer.toString(identifier) , x-7, y+10);
@@ -57,6 +56,10 @@ public class Node {
     }
 
     public Map<Integer, Object[]> getAccessByMap(){ return this.accessedByMap; }
+
+    public static void setDiameter(int newDiameter){ diameter = newDiameter;}
+
+    public static void setFont(Font newFont){ font = newFont;}
 
     public Collection<Node> getAllAccessNodes() {
         Vector<Node> accessNodes = new Vector<>();

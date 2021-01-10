@@ -32,6 +32,8 @@ public class Canvas extends JPanel implements MouseListener {
 
     // Override JComponent.paint()
     public void paint(Graphics g){
+        Node.setDiameter(40);
+        Node.setFont(new Font("",Font.BOLD,30));
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.LIGHT_GRAY);
         g2.fillRect(0,0,699,659);
