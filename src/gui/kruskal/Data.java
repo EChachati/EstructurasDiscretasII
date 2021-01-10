@@ -28,17 +28,8 @@ public class Data extends JPanel {
         this.actualLink = "Link Actual: (" + link.node.get(0).getIdentifier() + ", " + link.node.get(1).getIdentifier() + ").";
         repaint();
     }
-    public void setDefaultLink(){
-        this.actualLink = "Link Actual: ";
-        repaint();
-    }
-
     public void setActualCost(int cost){
         this.cost = String.format("Costo: %d", cost);
-        repaint();
-    }
-    public void setDefaultCost(){
-        this.cost = "Costo:";
         repaint();
     }
 }

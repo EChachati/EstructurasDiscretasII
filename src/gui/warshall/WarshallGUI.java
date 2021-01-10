@@ -2,19 +2,18 @@ package gui.warshall;
 
 import algorithms.Warshall;
 import graph.Graph;
+import gui.ChooseGraph;
 import gui.MainFrame;
+import gui.Menu;
 import gui.dijkstra.Title;
 
 import javax.swing.*;
 import java.util.Vector;
 
 public class WarshallGUI extends JPanel {
-    private Graph graph;
-    private Vector<Vector<Vector<Integer>>> allTransitiveMatrix;
-    private int actual = 2;
+    private final Vector<Vector<Vector<Integer>>> allTransitiveMatrix;
 
-    public WarshallGUI(Graph graph, MainFrame frame){
-        this.graph = graph;
+    public WarshallGUI(Graph graph, MainFrame frame, int actual){
         this.allTransitiveMatrix = Warshall.warshallAlgorithm(graph);
 
         // Setting Base Config
@@ -24,7 +23,6 @@ public class WarshallGUI extends JPanel {
         // Creating Buttons
         JButton backIterationButton = new JButton("Iteracion Anterior");
         JButton switchGraphButton = new JButton("Cambiar Grafo");
-        JButton resetGraphButton = new JButton("Reiniciar Grafo");
         JButton nextIterationButton = new JButton("Iteracion Siguente");
         JButton menuButton = new JButton("Menu");
 
@@ -36,13 +34,12 @@ public class WarshallGUI extends JPanel {
         } else {
             matrix = new Matrix(allTransitiveMatrix.get(actual));
         }
-        gui.warshall.Data data = new Data();
+        gui.warshall.Data data = new Data(actual);
 
         //Adding All Elements
         this.add(new SmallCanvas(graph));
         this.add(backIterationButton);
         this.add(switchGraphButton);
-       // this.add(resetGraphButton);
         this.add(nextIterationButton);
         this.add(menuButton);
         this.add(title);
@@ -50,12 +47,46 @@ public class WarshallGUI extends JPanel {
         this.add(data);
 
         // Setting Buttons Location and Size
+        matrix.setBounds(10,10,700,660);
         backIterationButton.setBounds(720, 405, 290, 60);
         nextIterationButton.setBounds(720, 475, 290, 60);
-       // resetGraphButton.setBounds   (720, 475, 290, 60);
         switchGraphButton.setBounds  (720, 545, 290, 60);
         menuButton.setBounds         (720, 615, 290, 60);
 
+        // Setting Buttons Functionalities
+        nextIterationButton.addActionListener(x -> {
+            if (actual != allTransitiveMatrix.size()-1){
+                frame.setContentPane(new WarshallGUI(graph, frame, actual+1));
+                frame.invalidate();
+                frame.validate();
+            }
+        });
+
+        backIterationButton.addActionListener(x -> {
+            if (actual != -1){
+                frame.setContentPane(new WarshallGUI(graph, frame, actual-1));
+                frame.invalidate();
+                frame.validate();
+            }
+        });
+
+        switchGraphButton.addActionListener(actionEvent -> {
+            /*
+             * Go Back to Choose Algorithm Menu
+             */
+            frame.setContentPane(new ChooseGraph(ChooseGraph.WARSHALL_ALGORITHM , frame));
+            frame.invalidate();
+            frame.validate();
+        });
+
+        menuButton.addActionListener(x -> {
+            /*
+             * Go Back to Main Menu
+             */
+            frame.setContentPane(new Menu(frame));
+            frame.invalidate();
+            frame.validate();
+        });
     }
 
 }

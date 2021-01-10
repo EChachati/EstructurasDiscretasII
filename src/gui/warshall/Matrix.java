@@ -1,8 +1,5 @@
 package gui.warshall;
 
-import algorithms.Warshall;
-import graph.Predefined;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Vector;
@@ -12,25 +9,12 @@ public class Matrix extends JPanel {
     private final int DEFAULT_WIDTH;
     private final int DEFAULT_HEIGHT;
 
-    private int width = 0;
-    private int height = 0;
-    private Vector<Vector<Vector<Integer>>> allTransitiveMatrix;
     private final Vector<Vector<Integer>> matrix;
     private final int nodeQuantity;
 
-    public Matrix(Vector<Vector<Vector<Integer>>> allTransitiveMatrix, int n){
-        setLayout(null);
-        setSize(700,700);
-        this.allTransitiveMatrix = allTransitiveMatrix;
-        this.matrix = allTransitiveMatrix.get(n);
-        this.nodeQuantity = matrix.size();
-        DEFAULT_HEIGHT = 660 / (nodeQuantity+1);
-        DEFAULT_WIDTH = 700 / (nodeQuantity+1);
-    }
-
     public Matrix (Vector<Vector<Integer>> matrix){
         setLayout(null);
-        setSize(700,700);
+        setSize(700,660);
         this.matrix = matrix;
         nodeQuantity = matrix.size();
         DEFAULT_HEIGHT = 660 / (nodeQuantity+1);
@@ -42,8 +26,8 @@ public class Matrix extends JPanel {
         Graphics2D g3 = (Graphics2D) g;
         g3.setColor(Color.LIGHT_GRAY);
         g3.fillRect(0,0,699,699);
-        width = -DEFAULT_WIDTH;
-        height = 0;
+        int width;
+        int height = 0;
         g2.setColor(Color.GREEN);
         g.setFont(new Font("", Font.BOLD, 25));
         for (int i = 0; i < matrix.size(); i++) {
@@ -74,7 +58,7 @@ public class Matrix extends JPanel {
             width += DEFAULT_WIDTH;
             height += DEFAULT_HEIGHT;
         }
-        g.drawRect(0,0,699,699);
+        g.drawRect(0,0,699,659);
     }
 
     public Matrix getEmptyMatrix() {
@@ -87,17 +71,5 @@ public class Matrix extends JPanel {
         }
         return new Matrix(matrix);
 
-    }
-
-    public static void main(String[] args) {
-        JFrame window = new JFrame();
-        Vector<Vector<Vector<Integer>>> allTransitiveMatrix = Warshall.warshallAlgorithm(Predefined.graphNumber1());
-        Matrix mat = new Matrix(allTransitiveMatrix, 6);
-        window.add(mat);
-        window.setSize(700, 700);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
-        mat.repaint();
     }
 }

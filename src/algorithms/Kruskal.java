@@ -92,7 +92,6 @@ public class Kruskal {
         return false;
     }
 
-
     private static Vector<Link> removeAllNotIn(Collection<Link> original,Collection<Link> keept){
         Vector<Link> ret = new Vector<>();
         for (Link l: original){

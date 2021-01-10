@@ -48,7 +48,7 @@ public class ChooseGraph extends JPanel {
                 frame.invalidate();
                 frame.validate();
             } else if (selectedAlgorithm == ChooseGraph.WARSHALL_ALGORITHM){
-                frame.setContentPane(new WarshallGUI(Predefined.graphNumber1(), frame));
+                frame.setContentPane(new WarshallGUI(Predefined.SmallGraphNumber1(), frame, -1));
                 frame.invalidate();
                 frame.validate();
             }
@@ -66,7 +66,7 @@ public class ChooseGraph extends JPanel {
                 frame.invalidate();
                 frame.validate();
             } else if (selectedAlgorithm == ChooseGraph.WARSHALL_ALGORITHM){
-                frame.setContentPane(new WarshallGUI(Predefined.graphNumber2(), frame));
+                frame.setContentPane(new WarshallGUI(Predefined.smallGraphNumber2(), frame, -1));
                 frame.invalidate();
                 frame.validate();
             }
@@ -84,7 +84,7 @@ public class ChooseGraph extends JPanel {
                 frame.invalidate();
                 frame.validate();
             } else if (selectedAlgorithm == ChooseGraph.WARSHALL_ALGORITHM){
-                frame.setContentPane(new WarshallGUI(Predefined.graphNumber3(), frame));
+                frame.setContentPane(new WarshallGUI(Predefined.SmallGraphNumber3(), frame, -1));
                 frame.invalidate();
                 frame.validate();
             }

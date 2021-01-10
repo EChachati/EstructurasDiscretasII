@@ -4,9 +4,13 @@ import java.awt.*;
 import java.util.Vector;
 
 public class Link {
-    private int x1, x2, y1, y2;
+    private final int x1;
+    private final int x2;
+    private final int y1;
+    private final int y2;
     public final Vector<Node> node;
     private final int distance;
+    private static Font font = new Font("Serif", Font.BOLD, 20);
     private Color color = Color.BLACK;
 
     public Link(Node node1, Node node2){
@@ -43,9 +47,8 @@ public class Link {
 
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
-        Font linkFont = new Font("Serif", Font.BOLD, (int) (20 * Node.getProportion()));
         g2.setColor(this.color);
-        g2.setFont(linkFont);
+        g2.setFont(font);
         g2.drawString(Integer.toString(distance),(x1+x2)/2, (y1+y2)/2);
         g2.drawLine(x1, y1, x2, y2);
     }
@@ -54,18 +57,11 @@ public class Link {
 
     public void setColor(Color color) { this.color = color; }
 
+    public static void setFont(Font newFont){ font = newFont; }
+
     public String toString(){
         return "From " + node.get(0).getIdentifier() + " To " + node.get(1).getIdentifier() +
                 "    Cost="+  distance;
     }
-
     public Color getColor() { return color;}
-
-    public void recalculate(){
-        this.x1 = node.get(0).getX();
-        this.y1 = node.get(0).getY();
-        this.x2 = node.get(1).getX();
-        this.y2 = node.get(1).getY();
-    }
 }
-

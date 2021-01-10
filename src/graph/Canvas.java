@@ -16,14 +16,17 @@ public class Canvas extends JPanel implements MouseListener {
     Node selectedNode = null;
 
     public Canvas(Graph graph) {
+        Node.setFont(new Font("",Font.BOLD,30));
         this.setLayout(null);
         this.setBounds(10,10,700,700);
         this.graph = graph;
         this.usePredefined = true;
         this.addMouseListener(this);
+
     }
 
     public Canvas() {
+        Node.setFont(new Font("",Font.BOLD,30));
         this.setLayout(null);
         this.setBounds(0,0,700,700);
         this.graph = new Graph();
@@ -33,6 +36,7 @@ public class Canvas extends JPanel implements MouseListener {
     // Override JComponent.paint()
     public void paint(Graphics g){
         Node.setDiameter(40);
+        Link.setFont(new Font("Serif", Font.BOLD, 20));
         Node.setFont(new Font("",Font.BOLD,30));
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.LIGHT_GRAY);

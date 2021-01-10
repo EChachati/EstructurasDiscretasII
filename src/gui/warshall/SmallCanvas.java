@@ -10,10 +10,12 @@ import java.awt.*;
 public class SmallCanvas extends JPanel {
     private final Graph graph;
     public SmallCanvas(Graph graph) {
-        Node.setProportion(0.42);
+        Link.setFont(new Font("Serif", Font.BOLD, 0));
+        Node.setFont(new Font("",Font.BOLD,13));
         this.setLayout(null);
         this.setBounds(720,50,290,290);
         this.graph = graph;
+
     }
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
@@ -24,14 +26,7 @@ public class SmallCanvas extends JPanel {
         g.setColor(Color.BLACK);
         g.drawRect(0,0,289,289);
 
-        for(Node node: graph.getNodeList()){
-            node.recalculate();
-        }
-        for(Link link : graph.getLinkList()){
-            link.recalculate();
-            link.paint(g); }
-        for(Node node: graph.getNodeList()){
-            node.paint(g);
-        }
+        for(Link link : graph.getLinkList()){ link.paint(g); }
+        for(Node node : graph.getNodeList()){ node.paint(g); }
     }
 }

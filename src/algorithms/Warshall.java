@@ -41,17 +41,6 @@ public class Warshall {
             }
             allTransitiveMatrix.add(new Vector<>(warshallMatrix));
         }
-
-        for(byte i=0; i < allTransitiveMatrix.size(); i++){
-            if(i == 0){
-                System.out.println("Matriz de adyacencia");
-            }
-            else{
-                System.out.printf("Matriz del nodo %s \n",i-1);
-            }
-            VectorMethods.showMatrix(allTransitiveMatrix.get(i));
-        }
-
         return allTransitiveMatrix;
     }
 }

@@ -6,9 +6,10 @@ import java.awt.*;
 public class Data extends JPanel {
     String actualTable = "Tabla: ";
 
-    public Data() {
+    public Data(int tableIndex) {
         this.setLayout(null);
         this.setBounds(720, 345, 290, 55);
+        this.setActualTable(tableIndex);
     }
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
@@ -25,13 +26,7 @@ public class Data extends JPanel {
         } else if (tableIndex == 0 ){
             actualTable = "Tabla: Transitiva";
         } else {
-            actualTable = "Tabla: " + Integer.toString(tableIndex-1);
+            actualTable = "Tabla: " + (tableIndex - 1);
         }
     }
-    public void setDefaultLink(){
-        this.actualTable = "Tabla: ";
-        repaint();
-    }
-
-
 }

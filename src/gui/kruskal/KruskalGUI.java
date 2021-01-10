@@ -65,6 +65,7 @@ public class KruskalGUI extends JPanel {
         switchGraphButton.setBounds  (720, 545, 290, 60);
         menuButton.setBounds         (720, 615, 290, 60);
 
+        // Setting buttons functionalities
         nextIterationButton.addActionListener( mousePressed -> {
             if(usedLinks.size() != graph.getNodeList().size()-1 || actual.getColor() == Color.YELLOW){
 

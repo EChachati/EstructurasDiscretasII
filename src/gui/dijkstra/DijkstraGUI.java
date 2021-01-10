@@ -5,7 +5,6 @@ import graph.Canvas;
 import gui.ChooseGraph;
 import gui.MainFrame;
 import gui.Menu;
-import gui.kruskal.KruskalGUI;
 
 import javax.swing.*;
 import java.awt.*;
