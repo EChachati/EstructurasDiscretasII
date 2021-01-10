@@ -10,8 +10,8 @@ import java.awt.*;
 public class SmallCanvas extends JPanel {
     private final Graph graph;
     public SmallCanvas(Graph graph) {
+        Node.setProportion(0.42);
         this.setLayout(null);
-       // setSize(290, 290);
         this.setBounds(720,50,290,290);
         this.graph = graph;
     }
@@ -23,7 +23,15 @@ public class SmallCanvas extends JPanel {
         g2.fillRect(0,0,699,659);
         g.setColor(Color.BLACK);
         g.drawRect(0,0,289,289);
-        for(Link link : graph.getLinkList()){ link.paint(g); }
-        for(Node node: graph.getNodeList()){ node.paint(g); }
+
+        for(Node node: graph.getNodeList()){
+            node.recalculate();
+        }
+        for(Link link : graph.getLinkList()){
+            link.recalculate();
+            link.paint(g); }
+        for(Node node: graph.getNodeList()){
+            node.paint(g);
+        }
     }
 }

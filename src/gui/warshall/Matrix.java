@@ -41,8 +41,7 @@ public class Matrix extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         Graphics2D g3 = (Graphics2D) g;
         g3.setColor(Color.LIGHT_GRAY);
-        g3.fillRect(0,0,699,699
-        );
+        g3.fillRect(0,0,699,699);
         width = -DEFAULT_WIDTH;
         height = 0;
         g2.setColor(Color.GREEN);

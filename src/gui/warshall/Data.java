@@ -1,13 +1,10 @@
 package gui.warshall;
 
-import graph.Link;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class Data extends JPanel {
     String actualTable = "Tabla: ";
-    //String cost = "Costo: ";
 
     public Data() {
         this.setLayout(null);

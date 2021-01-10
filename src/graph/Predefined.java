@@ -7,14 +7,14 @@ public class Predefined {
 
     public static Graph graphNumber1() {
         final Node[] nodeArray = {
-                new Node(50, 250),  // 0
-                new Node(200, 50),  // 1
-                new Node(200, 400), // 2
-                new Node(300, 50),  // 3
-                new Node(250, 250), // 4
-                new Node(400, 150), // 5
-                new Node(300, 400), // 6
-                new Node(400, 350)  // 7
+                new Node(70, 350),  // 0
+                new Node(280, 70),  // 1
+                new Node(280, 560), // 2
+                new Node(420, 70),  // 3
+                new Node(350, 350), // 4
+                new Node(560, 210), // 5
+                new Node(420, 560), // 6
+                new Node(560, 490)  // 7
         };
         final Link[] linkArray = {
                 new Link(nodeArray[0], nodeArray[1], 10), // 0,1
@@ -36,12 +36,12 @@ public class Predefined {
 
     public static Graph graphNumber2() {
         final Node[] nodeArray = {
-                new Node(250,50),   // 0
-                new Node(50, 150),  // 1
-                new Node(250,250),  // 2
-                new Node(100,400),  // 3
-                new Node(400, 400), // 4
-                new Node(450, 150)  // 5
+                new Node(350,  70),   // 0
+                new Node(70,  210),  // 1
+                new Node(350, 350),  // 2
+                new Node(140, 560),  // 3
+                new Node(560, 560), // 4
+                new Node(630, 210)  // 5
         };
         final Link[] linkArray = {
                 new Link(nodeArray[0], nodeArray[1], 7),  // 0,1
@@ -59,11 +59,11 @@ public class Predefined {
 
     public static Graph graphNumber3() {
         final Node[] nodeArray = {
-                new Node(200,50), // 0
-                new Node(100,200), // 1
-                new Node(300,200), // 2
-                new Node(100,400), // 3
-                new Node(300, 400) // 4
+                new Node(280,  70), // 0
+                new Node(140, 280), // 1
+                new Node(420, 280), // 2
+                new Node(140, 560), // 3
+                new Node(420, 560)  // 4
         };
         final Link[] linkArray = {
                 new Link(nodeArray[0], nodeArray[1], 2),   // 0,1
