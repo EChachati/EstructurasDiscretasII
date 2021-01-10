@@ -76,7 +76,7 @@ public class KruskalGUI extends JPanel {
                         actual.setColor(Color.RED);
                         usedLinks.remove(actual);
                     } else { // ACCEPTABLE, Does not generate Cycle
-                        actual.setColor(Color.GREEN.darker().darker());
+                        actual.setColor(Color.GREEN.darker());
                         cost += actual.getDistance();
                         data.setActualCost(cost);
                     }

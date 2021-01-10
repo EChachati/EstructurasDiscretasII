@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Data extends JPanel {
-    String actualLink = "Link Actual: ";
+    String actualLink = "Arista Actual: ";
     String cost = "Costo: ";
 
     public Data() {
@@ -25,7 +25,7 @@ public class Data extends JPanel {
         g.drawString(this.cost, 5, 88 );
     }
     public void setActualLink(Link link){
-        this.actualLink = "Link Actual: (" + link.node.get(0).getIdentifier() + ", " + link.node.get(1).getIdentifier() + ").";
+        this.actualLink = "Arista Actual: (" + link.node.get(0).getIdentifier() + ", " + link.node.get(1).getIdentifier() + ").";
         repaint();
     }
     public void setActualCost(int cost){
