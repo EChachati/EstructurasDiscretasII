@@ -8,7 +8,4 @@ Evaluación 1
     -> Ruta más corta de Dijkstra
     -> Árbol de costo minimo de Kruskal
     -> Matrices de cierre transitivo de Warshall
-    
-  Pendiente:
   
-    -> Realizar ejercicios en Word
